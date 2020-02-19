@@ -1512,8 +1512,8 @@ struct ext4_sb_info {
 	struct ratelimit_state s_warning_ratelimit_state;
 	struct ratelimit_state s_msg_ratelimit_state;
 
-	/* Barrier between changing inodes' journal flags and writepages ops. */
-        struct percpu_rw_semaphore s_writepages_rwsem;
+	/*Barrier between writepages ops and changing any inode's JOURNAL_DATA or EXTENTS flag.*/
+	struct percpu_rw_semaphore s_writepages_rwsem;
 
 	/* Encryption support */
 #ifdef CONFIG_EXT4_FS_ENCRYPTION
